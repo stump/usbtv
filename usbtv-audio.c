@@ -330,8 +330,8 @@ int usbtv_audio_init(struct usbtv *usbtv)
 	INIT_WORK(&usbtv->snd_trigger, snd_usbtv_trigger);
 	atomic_set(&usbtv->snd_stream, 0);
 
-	rv = snd_card_create(SNDRV_DEFAULT_IDX1, "usbtv", THIS_MODULE, 0,
-		&card);
+	rv = snd_card_new(usbtv->dev, SNDRV_DEFAULT_IDX1, "usbtv",
+		THIS_MODULE, 0,	&card);
 	if (rv < 0)
 		return rv;
 
